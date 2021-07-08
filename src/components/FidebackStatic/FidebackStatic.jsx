@@ -1,6 +1,8 @@
-// import css from './FidebackStatic.module.css';
-
 import React, { Component } from 'react';
+// import css from './FidebackStatic.module.css';
+import Statistics from './Statistics';
+import FeedbackOption from './FeedbackOption';
+import Section from 'components/Section';
 
 export default class FidebackStatic extends Component {
   state = {
@@ -20,26 +22,15 @@ export default class FidebackStatic extends Component {
   
   render() {
     const { good, neutral, bad } = this.state;
-    return (      
-      <div>
-        <h1>Please leave feedback</h1>
-        <ul>
-          {Object.keys(this.state).map(key => (
-            <li key={key}>
-              <button type="button" name={key} onClick={this.handelClick}>
-                {key[0].toUpperCase() + key.slice(1)}
-              </button>
-            </li>
-          ))}
-        </ul>
-        <h2>Statistics</h2>
-        <p>Good: {good}</p>
-        <p>Neutral: {neutral}</p>
-        <p>Bad: {bad}</p>
-        <p>Total: {this.countTotalFeedback()}</p>
-        <p>Positive feedback: { good>0 ? this.countPositiveFeedbackPercentage().toFixed(2) : 0}%;              
-     </p>
-      </div>
+    return (
+     <>
+      <Section title="Please leave feedback">
+        <FeedbackOption options={this.state} onLeaveFeedback={this.handelClick} />
+      </Section>
+    <Section title="Statistics">
+        <Statistics good={good} neutral={neutral} bad={bad} total={this.countTotalFeedback()} positivePercentage={this.countPositiveFeedbackPercentage()} />
+      </Section>
+     </> 
     );
   }
 }
