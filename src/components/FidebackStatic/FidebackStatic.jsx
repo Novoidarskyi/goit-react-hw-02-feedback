@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import css from './FidebackStatic.module.css';
+import css from './FidebackStatic.module.css';
 import Statistics from './Statistics';
 import FeedbackOption from './FeedbackOption';
 import Section from 'components/Section';
@@ -26,7 +26,7 @@ export default class FidebackStatic extends Component {
   render() {
     const { good, neutral, bad } = this.state;
     return (
-      <>
+      <div className = {css.container}>
         <Section title="Please leave feedback">
           <FeedbackOption
             options={this.state}
@@ -46,7 +46,7 @@ export default class FidebackStatic extends Component {
         ) : (
           <Notification message="No feedback given" />
         )}
-      </>
+      </div>
     );
   }
 }
